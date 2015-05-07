@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		197C01211AFBD4070056EA2C /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197C01201AFBD4070056EA2C /* UserDetailViewController.swift */; };
 		19FF81791AFAFA8000721F5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF81781AFAFA8000721F5B /* AppDelegate.swift */; };
 		19FF817B1AFAFA8000721F5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF817A1AFAFA8000721F5B /* ViewController.swift */; };
 		19FF817E1AFAFA8000721F5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FF817C1AFAFA8000721F5B /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		197C01201AFBD4070056EA2C /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		19FF81731AFAFA8000721F5B /* GithubUserSearch2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubUserSearch2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19FF81771AFAFA8000721F5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19FF81781AFAFA8000721F5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				19FF81781AFAFA8000721F5B /* AppDelegate.swift */,
 				19FF817A1AFAFA8000721F5B /* ViewController.swift */,
 				19FF817C1AFAFA8000721F5B /* Main.storyboard */,
+				197C01201AFBD4070056EA2C /* UserDetailViewController.swift */,
 				19FF817F1AFAFA8000721F5B /* Images.xcassets */,
 				19FF81811AFAFA8000721F5B /* LaunchScreen.xib */,
 				19FF81761AFAFA8000721F5B /* Supporting Files */,
@@ -214,6 +217,7 @@
 			files = (
 				19FF817B1AFAFA8000721F5B /* ViewController.swift in Sources */,
 				19FF81791AFAFA8000721F5B /* AppDelegate.swift in Sources */,
+				197C01211AFBD4070056EA2C /* UserDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +413,7 @@
 				19FF81941AFAFA8000721F5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19FF81951AFAFA8000721F5B /* Build configuration list for PBXNativeTarget "GithubUserSearch2Tests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				19FF81971AFAFA8000721F5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
