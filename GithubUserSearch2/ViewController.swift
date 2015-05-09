@@ -16,7 +16,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let kCellIdentifier: String = "Cell"
     var users = [User]()
     var searchAPI: GithubUserSearchAPI!
-    var selectedIndexPath: NSIndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +31,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         users = [User]()
         self.view.endEditing(true)
-        searchAPI.getUsers(self.searchBox.text, page: 0)
+        searchAPI.getUsers(self.searchBox.text, page: 1)
     }
     
     func didUserRecieved(user: User) {
         self.users.append(user)
+        if self.users.count % 15 == 0 || self.users.count == User.totalUserNum {
+            self.tableView.reloadData()
+        }
     }
     
     func shouldUpdateUI() {
@@ -44,32 +46,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return User.totalUserNum > users.count ? users.count + 1: users.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
         
-        cell.textLabel?.text = users[indexPath.row].name
-        cell.imageView?.image = users[indexPath.row].image
+        if User.totalUserNum > users.count && indexPath.row == users.count {
+            cell.textLabel?.text = "Load More"
+            cell.imageView?.hidden = true
+        } else {
+            cell.textLabel?.text = users[indexPath.row].name
+            cell.imageView?.hidden = false
+            cell.imageView?.image = users[indexPath.row].image            
+        }
         
         return cell
     }
     
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        selectedIndexPath = indexPath
-        var userDetailVC: UserDetailViewController = UserDetailViewController()
-        self.performSegueWithIdentifier("toUserDetailVC", sender: userDetailVC)
-        
-        return indexPath
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == users.count {
+            searchAPI.getUsers(self.searchBox.text, page: (self.users.count / 15) + 1)
+        } else {
+            var userDetailVC: UserDetailViewController = UserDetailViewController()
+            self.performSegueWithIdentifier("toUserDetailVC", sender: userDetailVC)
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let userDetailVC = segue.destinationViewController as? UserDetailViewController {
             userDetailVC.users = users
-            userDetailVC.index = selectedIndexPath!.row
+            userDetailVC.index = self.tableView.indexPathForSelectedRow()?.row
         }
-        self.tableView .deselectRowAtIndexPath(selectedIndexPath!, animated: false)
     }
     
     @IBAction func unwindToViewController(segue: UIStoryboardSegue) {

@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class User {
+    static var totalUserNum: Int = 0
+    
     var name: String
     var image: UIImage?
     var repos: [String]? = nil

@@ -26,6 +26,7 @@ class GithubUserSearchAPI {
     func getUsers(q: String, page: Int) {
         Alamofire.request(.GET, "https://api.github.com/search/users", parameters: ["q": q, "per_page": 15, "page": page])
             .responseJSON { (_, _, JSON, _) in
+                User.totalUserNum = JSON!.valueForKey("total_count") as! Int
                 if let data = JSON!.valueForKey("items") as? [NSDictionary] {
                     for var i = 0; i < data.count; i++ {
                         var userName = data[i].valueForKey("login") as! String
@@ -47,7 +48,7 @@ class GithubUserSearchAPI {
                 
                 self.delegate.didUserRecieved(user)
                 if shouldUpdateUI {
-                    self.delegate.shouldUpdateUI()
+//                    self.delegate.shouldUpdateUI()
                 }
                 
         }

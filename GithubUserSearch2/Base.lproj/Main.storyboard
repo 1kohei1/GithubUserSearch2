@@ -36,9 +36,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZMf-BC-v8D" id="Gm8-cA-GQL">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="T3y-SZ-RBK" kind="show" identifier="toUserDetailVC" id="4lf-wD-zL2"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -91,10 +88,12 @@
                     <connections>
                         <outlet property="searchBox" destination="iCe-qb-4JZ" id="vVI-j2-bPj"/>
                         <outlet property="tableView" destination="peZ-uL-2r6" id="6Gf-yT-TbK"/>
+                        <segue destination="T3y-SZ-RBK" kind="show" identifier="toUserDetailVC" id="7XQ-pD-yaX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="564" y="321"/>
         </scene>
         <!--User Detail View Controller-->
         <scene sceneID="EzW-Dm-Aoq">
