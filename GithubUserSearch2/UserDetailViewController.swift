@@ -57,11 +57,18 @@ class UserDetailViewController:UIViewController, GithubUserSearchAPIProtocol, UI
         return cell
     }
     
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        searchAPI.getCommits(users[index], repoName: users[index].repos![indexPath.row])
+        return indexPath
+    }
+    
     func didUserRecieved(user: User) {
+        println(user.toString())
         users[index] = user
+        self.userReposTable.reloadData()
     }
     
     func shouldUpdateUI() {
-        self.userReposTable.reloadData()
+//        self.userReposTable.reloadData()
     }
 }

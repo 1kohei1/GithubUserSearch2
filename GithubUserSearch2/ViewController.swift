@@ -42,7 +42,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func shouldUpdateUI() {
-        self.tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

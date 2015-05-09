@@ -15,10 +15,13 @@ class User {
     var name: String
     var image: UIImage?
     var repos: [String]? = nil
-    var commits: [String: String] = [String: String]()
-    
+    var commits: [String: [String]] = [String: [String]]()
     
     init(name: String) {
         self.name = name
+    }
+    
+    func toString() -> String {
+        return "name: \(name), repos: \(repos), commits: \(commits)"
     }
 }

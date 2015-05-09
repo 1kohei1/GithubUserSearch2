@@ -33,13 +33,13 @@ class GithubUserSearchAPI {
                         var user = User(name: userName)
                         var imageURL = data[i].valueForKey("avatar_url") as! String
                         
-                        self.getImage(user, htmlURL: imageURL, shouldUpdateUI: i == data.count - 1)
+                        self.getImage(user, htmlURL: imageURL)
                     }
                 }
             }
     }
     
-    func getImage(user: User, htmlURL: String, shouldUpdateUI: Bool) {
+    func getImage(user: User, htmlURL: String) {
         Alamofire.request(.GET, htmlURL)
             .response { (_, _, data, _) in
                 var dataInNSData = data as! NSData
@@ -47,9 +47,6 @@ class GithubUserSearchAPI {
                 user.image = image
                 
                 self.delegate.didUserRecieved(user)
-                if shouldUpdateUI {
-//                    self.delegate.shouldUpdateUI()
-                }
                 
         }
     }
@@ -69,7 +66,20 @@ class GithubUserSearchAPI {
         }
     }
     
-    func getCommits(userName: String, repoName: String) {
-        
+    // https://api.github.com/repos/1kohei1/GithubUserSearch/commits
+    func getCommits(user: User, repoName: String) {
+        Alamofire.request(.GET, "https://api.github.com/repos/\(user.name)/\(repoName)/commits")
+            .responseJSON { (_, _, JSON, _) in
+                if let data = JSON as? [NSDictionary] {
+                    var iteratorMax = data.count > 10 ? 10 : data.count
+                    var commits = [String]()
+                    for var i = 0; i < iteratorMax; i++ {
+                        commits.append(data[i].valueForKey("commit")?.valueForKey("message") as! String)
+                    }
+                    user.commits.updateValue(commits, forKey: repoName)
+                    self.delegate.didUserRecieved(user)
+//                    self.delegate.shouldUpdateUI()
+                }
+        }
     }
 }
