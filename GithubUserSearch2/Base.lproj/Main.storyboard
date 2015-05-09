@@ -184,7 +184,7 @@
                                     <barButtonItem title="Close" id="c8Y-0J-IJX">
                                         <connections>
                                             <action selector="returnToTableView:" destination="T3y-SZ-RBK" id="6d6-cD-e0A"/>
-                                            <segue destination="JQK-u1-ESi" kind="unwind" unwindAction="unwindToViewController:" id="gdF-9u-sor"/>
+                                            <segue destination="JQK-u1-ESi" kind="unwind" unwindAction="unwindToViewController:" id="c8l-0a-cLr"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

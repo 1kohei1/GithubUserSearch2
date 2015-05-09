@@ -71,5 +71,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         self.tableView .deselectRowAtIndexPath(selectedIndexPath!, animated: false)
     }
+    
+    @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
+        var userDetailVC = segue.sourceViewController as! UserDetailViewController
+        self.users = userDetailVC.users
+    }
+
 }
 

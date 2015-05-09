@@ -43,15 +43,7 @@ class UserDetailViewController:UIViewController, GithubUserSearchAPIProtocol, UI
     
     @IBAction func showNextUser(sender: AnyObject) {
     }
-    
-    @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
-        println("hello")
-        if let vc: ViewController = segue.sourceViewController as? ViewController {
-            
-            vc.users = users
-        }
-    }
-    
+        
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users[index].repos!.count
     }
