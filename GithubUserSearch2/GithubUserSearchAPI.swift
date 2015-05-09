@@ -54,7 +54,18 @@ class GithubUserSearchAPI {
     }
     
     func getRepos(user: User) {
-        
+        user.repos = [String]()
+        Alamofire.request(.GET, "https://api.github.com/users/\(user.name)/repos")
+            .responseJSON { (_, _, JSON, _) in
+                if let data = JSON as? [NSDictionary] {
+                    for var i = 0; i < data.count; i++ {
+                        var repoName: String = data[i].valueForKey("name") as! String
+                        user.repos!.append(repoName)
+                    }
+                    self.delegate.didUserRecieved(user)
+                    self.delegate.shouldUpdateUI()
+                }
+        }
     }
     
     func getCommits(userName: String, repoName: String) {

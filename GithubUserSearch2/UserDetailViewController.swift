@@ -8,7 +8,9 @@
 
 import UIKit
 
-class UserDetailViewController:UIViewController {
+class UserDetailViewController:UIViewController, GithubUserSearchAPIProtocol, UITableViewDataSource, UITableViewDelegate {
+    
+    let kCellIdentifier = "Cell"
     
     @IBOutlet weak var preUserButton: UIButton!
     @IBOutlet weak var userImage: UIImageView!
@@ -16,11 +18,19 @@ class UserDetailViewController:UIViewController {
     
     @IBOutlet weak var userReposTable: UITableView!
     
-    
+    var users: [User]!
+    var index: Int!
+    var searchAPI: GithubUserSearchAPI!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.userImage.image = users[index].image
+        
+        searchAPI = GithubUserSearchAPI(delegate: self)
+        if users[index].repos == nil {
+            searchAPI.getRepos(users[index])
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,4 +44,32 @@ class UserDetailViewController:UIViewController {
     @IBAction func showNextUser(sender: AnyObject) {
     }
     
+    @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
+        println("hello")
+        if let vc: ViewController = segue.sourceViewController as? ViewController {
+            
+            vc.users = users
+        }
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return users[index].repos!.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell: UITableViewCell = self.userReposTable.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
+        
+        println()
+        cell.textLabel?.text = users[index].repos![indexPath.row]
+        
+        return cell
+    }
+    
+    func didUserRecieved(user: User) {
+        users[index] = user
+    }
+    
+    func shouldUpdateUI() {
+        self.userReposTable.reloadData()
+    }
 }

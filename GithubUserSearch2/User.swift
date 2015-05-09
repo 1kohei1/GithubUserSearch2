@@ -12,8 +12,8 @@ import UIKit
 class User {
     var name: String
     var image: UIImage?
-    var repos: [String: String]?
-    var commits: [String: String]?
+    var repos: [String]? = nil
+    var commits: [String: String] = [String: String]()
     
     
     init(name: String) {
