@@ -12,7 +12,6 @@ import Alamofire
 
 protocol GithubUserSearchAPIProtocol {
     func didUserRecieved(users: User)
-    func shouldUpdateUI()
 }
 
 class GithubUserSearchAPI {
@@ -61,7 +60,6 @@ class GithubUserSearchAPI {
                         user.repos!.append(repoName)
                     }
                     self.delegate.didUserRecieved(user)
-                    self.delegate.shouldUpdateUI()
                 }
         }
     }
@@ -78,7 +76,6 @@ class GithubUserSearchAPI {
                     }
                     user.commits.updateValue(commits, forKey: repoName)
                     self.delegate.didUserRecieved(user)
-//                    self.delegate.shouldUpdateUI()
                 }
         }
     }

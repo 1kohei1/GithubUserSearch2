@@ -40,10 +40,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.tableView.reloadData()
         }
     }
-    
-    func shouldUpdateUI() {
-    }
-    
+        
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return User.totalUserNum > users.count ? users.count + 1: users.count
     }

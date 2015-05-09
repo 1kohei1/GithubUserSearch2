@@ -43,7 +43,11 @@ class UserDetailViewController:UIViewController, GithubUserSearchAPIProtocol, UI
     
     @IBAction func showNextUser(sender: AnyObject) {
     }
-        
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users[index].repos!.count
     }
@@ -51,7 +55,6 @@ class UserDetailViewController:UIViewController, GithubUserSearchAPIProtocol, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell = self.userReposTable.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
         
-        println()
         cell.textLabel?.text = users[index].repos![indexPath.row]
         
         return cell
@@ -63,12 +66,7 @@ class UserDetailViewController:UIViewController, GithubUserSearchAPIProtocol, UI
     }
     
     func didUserRecieved(user: User) {
-        println(user.toString())
         users[index] = user
         self.userReposTable.reloadData()
-    }
-    
-    func shouldUpdateUI() {
-//        self.userReposTable.reloadData()
     }
 }
