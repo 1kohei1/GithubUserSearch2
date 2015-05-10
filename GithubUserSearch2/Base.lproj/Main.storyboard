@@ -276,8 +276,8 @@
                     <connections>
                         <outlet property="nextUserButton" destination="XZo-aQ-BGP" id="G4f-FA-YzU"/>
                         <outlet property="preUserButton" destination="E3A-sw-UlU" id="Nm3-Ka-JuG"/>
+                        <outlet property="tableView" destination="QDi-UY-N4k" id="m42-2R-WFB"/>
                         <outlet property="userImage" destination="9W7-Pc-GOP" id="ksn-nc-1w6"/>
-                        <outlet property="userReposTable" destination="QDi-UY-N4k" id="fMf-SN-WKq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y39-G4-RId" userLabel="First Responder" sceneMemberID="firstResponder"/>

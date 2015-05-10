@@ -64,7 +64,6 @@ class GithubUserSearchAPI {
         }
     }
     
-    // https://api.github.com/repos/1kohei1/GithubUserSearch/commits
     func getCommits(user: User, repoName: String) {
         Alamofire.request(.GET, "https://api.github.com/repos/\(user.name)/\(repoName)/commits")
             .responseJSON { (_, _, JSON, _) in
